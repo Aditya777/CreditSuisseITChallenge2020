@@ -17,13 +17,11 @@ def fun(books, days):
     if len(books) == 0:
         return 0
 
-    if len(books) ==1:
+    if len(books) == 1:
         for d in days:
             if books[-1] < d:
-                memo[(books, days)] = 1
-        if (books, days) not in memo:
-            memo[(books, days)] = 0
-        return memo.get((books, days))
+                return 1
+        return 0
 
     cur = books[-1]
     books = books[:-1]
