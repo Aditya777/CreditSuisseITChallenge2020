@@ -32,7 +32,8 @@ def fun_geo(shape, line):
     ans = []
     n = len(shape)
     line1 = make_line(line[0], line[1])
-    for i in range(n):
+    i =0
+    while i < n:
         if i ==n-1:
             j =0
         else:
@@ -41,38 +42,14 @@ def fun_geo(shape, line):
         line2 = make_line(shape[i], shape[j])
 
         p = poi(line1, line2)
-        # print(shape[i])
-        # print(shape[j])
-        # print(p)
-        # print()
         if p:
-            #print('A')
             if min(shape[i]['x'], shape[j]['x']) <= p[0] <= max(shape[i]['x'], shape[j]['x']) and min(shape[i]['y'], shape[j]['y']) <= p[1] <= max(shape[i]['y'], shape[j]['y']):
-             #   print('A')
                 ans.append({"x":p[0], "y": p[1]})
+                if p[0] == shape[j]['x'] and p[1] == shape[j]['y']:
+                    i+=1
+        i+=1
 
-    flag = False
-    if line[0]['x'] - line[1]['x'] ==0:
-        flag = True
-    else:
-        m = (line[0]['y'] - line[1]['y'] / line[0]['x'] - line[1]['x'])
-        c = line[0]['y'] - m * line[0]['x']
-        m = round(m, 2)
-
-    for i in range(n):
-        if flag:
-            if shape[i]['x'] == line[0]['x']:
-                ans.append({"x": shape[i]['x'], "y": shape[i]['y']})
-        else:
-            #print()
-            #print(shape[i])
-            #print(m)
-            #print(shape[i]['y'])
-            #print( m * shape[i]['x'] + c)
-            if shape[i]['y'] == m * shape[i]['x'] + c:
-                ans.append({"x":shape[i]['y'], "y":shape[i]['y']})
-
-    return ans
+    return list(ans)
 
 
 
