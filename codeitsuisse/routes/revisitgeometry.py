@@ -34,7 +34,7 @@ def fun_geo(shape, line):
     line1 = make_line(line[0], line[1])
     i =0
     while i < n:
-        if i ==n-1:
+        if i >= n-1:
             j =0
         else:
             j =i+1
