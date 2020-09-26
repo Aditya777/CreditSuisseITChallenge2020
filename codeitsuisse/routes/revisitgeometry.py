@@ -44,9 +44,12 @@ def fun_geo(shape, line):
         p = poi(line1, line2)
         if p:
             if min(shape[i]['x'], shape[j]['x']) <= p[0] <= max(shape[i]['x'], shape[j]['x']) and min(shape[i]['y'], shape[j]['y']) <= p[1] <= max(shape[i]['y'], shape[j]['y']):
-                ans.append({"x":p[0], "y": p[1]})
-                if p[0] == shape[j]['x'] and p[1] == shape[j]['y']:
-                    i+=1
+                if i == 0 and p[0] == shape[i]['x'] and p[1] == shape[i]['y']:
+                    pass
+                else:
+                    ans.append({"x":p[0], "y": p[1]})
+                    if p[0] == shape[j]['x'] and p[1] == shape[j]['y']:
+                       i+=1
         i+=1
 
     return list(ans)
