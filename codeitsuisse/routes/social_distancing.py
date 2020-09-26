@@ -6,27 +6,31 @@ from flask import request, jsonify;
 from codeitsuisse import app;
 
 logger = logging.getLogger(__name__)
+memo = {}
 
 
-def fun(seat, people, space):
+def fun(st, p, space):
 
-    fun.ans = 0
-    def recur(st, p):
-        if p > st:
-            return False
-        if p == 0:
-            return 0
-        if p==1:
-            return st
+    if p > st:
+        return 0
+    if p == 0:
+        return 0
+    if p==1:
+        return st
 
-        for s in range(1, st+1):
-            if st -s >0:
-                can = recur(st-s-space, p-1)
-                if can:
-                    fun.ans += can
+    if (st, p, space) in memo:
+        return memo.get((st, p, space))
+    ans = 0
+    for s in range(1, st+1):
+        if st -s > 0 :
+            if (st-s-space, p-1, space) not in memo:
+                memo[(st-s-space, p-1, space)] = fun(st-s-space, p-1, space)
 
-    recur(seat, people)
-    return fun.ans
+            ans += memo.get((st-s-space, p-1, space))
+
+    memo[(st, p, space)] = ans
+    return ans
+
 
 
 @app.route('/social_distancing', methods=['POST'])
