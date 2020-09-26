@@ -6,13 +6,13 @@ from flask import request, jsonify;
 from codeitsuisse import app;
 
 logger = logging.getLogger(__name__)
-memo = {}
+#memo = {}
 
 
 def fun(books, days):
 
-    if (books, days) in memo:
-        return memo.get((books, days))
+ #   if (books, days) in memo:
+  #      return memo.get((books, days))
 
     if len(books) == 0:
         return 0
@@ -32,14 +32,14 @@ def fun(books, days):
         cop = list(days)
         cop[i] -= cur
         cop = tuple(cop)
-        if (books, cop) not in memo:
-            memo[(books, cop)] = fun(books, cop)
-        max_books = max(max_books, 1 + memo.get((books, cop)))
+   #     if (books, cop) not in memo:
+    #        memo[(books, cop)] = fun(books, cop)
+        max_books = max(max_books, 1 + fun(books, cop))#memo.get((books, cop)))
 
-    if (books, days) not in memo:
-            memo[(books, days)] = fun(books, days)
+    #if (books, days) not in memo:
+     #       memo[(books, days)] = fun(books, days)
 
-    max_books = max(max_books, memo.get((books, days)))
+    max_books = max(max_books, fun(books, days))#memo.get((books, days)))
 
     return max_books
 
