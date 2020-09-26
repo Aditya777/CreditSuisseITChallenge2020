@@ -4,6 +4,7 @@ import codeitsuisse.routes.square
 import codeitsuisse.routes.salad_spree
 import codeitsuisse.routes.revisitgeometry
 import codeitsuisse.routes.cluster
+import codeitsuisse.routes.social_distancing
 
 
 
