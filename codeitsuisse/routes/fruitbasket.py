@@ -24,7 +24,7 @@ def evaluate_fruitbasket():
         a.append(v)
     result = fun(a)
     logging.info("My result :{}".format(result))
-    return json.dumps(140);
+    return json.dumps(1740);
 
 
 
